@@ -1,0 +1,1 @@
+dotnet run --project ./src/NumberValidation.API/NumberValidation.API.csproj
