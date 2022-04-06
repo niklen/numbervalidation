@@ -10,8 +10,6 @@ using IHost host = Host.CreateDefaultBuilder(args)
         .ConfigureServices((_, services) =>
             services.AddValidator())
             .Build();
-
-var run = true;
 do
 {
     Console.WriteLine("");
@@ -20,14 +18,14 @@ do
 
     var input = Console.ReadLine();
 
-    var numbers = input.Split(',');
+    var numbers = input?.Split(','); 
 
     using var serviceScope = host.Services.CreateScope();
     var provider = serviceScope.ServiceProvider;
     var validationService = provider.GetRequiredService<IValidationService>();
 
     validationService.ValidateNumbers(numbers);
-
+    await Task.Delay(500);
     Console.WriteLine($"To run again press: A");
     
 } while (Console.ReadKey().Key == ConsoleKey.A);
